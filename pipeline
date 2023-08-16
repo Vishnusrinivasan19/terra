@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Checkout your Terraform code from Git repository
-                    git credentialsId: 'your-git-credentials', url: 'https://github.com/Vishnusrinivasan19/terra.git'
+                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Vishnusrinivasan19/terra.git']]])
                 }
             }
         }
