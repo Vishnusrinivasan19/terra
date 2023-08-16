@@ -31,11 +31,4 @@ pipeline {
 
         // Add more stages for additional Terraform commands (e.g., plan, destroy)
     }
-
-    post {
-        always {
-            // Clean up after the job, e.g., removing temporary files
-            deleteDir()
-        }
-    }
 }
