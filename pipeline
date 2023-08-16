@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    // Checkout your Terraform code from Git repository
+                    git credentialsId: 'your-git-credentials', url: 'https://github.com/Vishnusrinivasan19/terra.git'
+                }
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                script {
+                    // Run terraform init
+                    sh 'terraform init'
+                }
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                script {
+                    // Run terraform apply with auto-approve
+                    sh 'terraform apply -auto-approve'
+                }
+            }
+        }
+
+        // Add more stages for additional Terraform commands (e.g., plan, destroy)
+    }
+
+    post {
+        always {
+            // Clean up after the job, e.g., removing temporary files
+            deleteDir()
+        }
+    }
+}
